@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		69C48BF51F15776400EAED73 /* LogglyLogger-CocoaLumberjack-Cape.h in Headers */ = {isa = PBXBuildFile; fileRef = 69C48BF31F15776400EAED73 /* LogglyLogger-CocoaLumberjack-Cape.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		69C48C021F1577A600EAED73 /* LogglyFields.h in Headers */ = {isa = PBXBuildFile; fileRef = 69C48BFB1F1577A600EAED73 /* LogglyFields.h */; };
+		69C48C021F1577A600EAED73 /* LogglyFields.h in Headers */ = {isa = PBXBuildFile; fileRef = 69C48BFB1F1577A600EAED73 /* LogglyFields.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		69C48C031F1577A600EAED73 /* LogglyFields.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C48BFC1F1577A600EAED73 /* LogglyFields.m */; };
-		69C48C041F1577A600EAED73 /* LogglyFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 69C48BFD1F1577A600EAED73 /* LogglyFormatter.h */; };
+		69C48C041F1577A600EAED73 /* LogglyFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 69C48BFD1F1577A600EAED73 /* LogglyFormatter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		69C48C051F1577A600EAED73 /* LogglyFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C48BFE1F1577A600EAED73 /* LogglyFormatter.m */; };
-		69C48C061F1577A600EAED73 /* LogglyLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 69C48BFF1F1577A600EAED73 /* LogglyLogger.h */; };
+		69C48C061F1577A600EAED73 /* LogglyLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 69C48BFF1F1577A600EAED73 /* LogglyLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		69C48C071F1577A600EAED73 /* LogglyLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C48C001F1577A600EAED73 /* LogglyLogger.m */; };
 		69C48C0C1F1579C100EAED73 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69C48C0B1F1579C100EAED73 /* CocoaLumberjack.framework */; };
 /* End PBXBuildFile section */
@@ -338,6 +338,7 @@
 				69C48BFA1F15776400EAED73 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
