@@ -16,4 +16,6 @@ FOUNDATION_EXPORT const unsigned char LogglyLogger_CocoaLumberjack_CapeVersionSt
 
 // In this header, you should import all the public headers of your framework using statements like #import <LogglyLogger_CocoaLumberjack_Cape/PublicHeader.h>
 
-
+#import "LogglyFields.h"
+#import "LogglyFormatter.h"
+#import "LogglyLogger.h"
