@@ -30,14 +30,16 @@
 
 
 @implementation LogglyFormatter {
-    id<LogglyFieldsDelegate> logglyFieldsDelegate;
+    id<LogglyFieldsDelegate> defaultLogglyFieldsDelegate;
+    __weak id<LogglyFieldsDelegate> logglyFieldsDelegate;
 }
 
 - (id)init {
     if((self = [super init]))
     {
         // Use standard LogglyFields Delegate
-        logglyFieldsDelegate = [[LogglyFields alloc] init];
+        defaultLogglyFieldsDelegate = [[LogglyFields alloc] init];
+        logglyFieldsDelegate = defaultLogglyFieldsDelegate;
         self.alwaysIncludeRawMessage = YES;
     }
     return self;
