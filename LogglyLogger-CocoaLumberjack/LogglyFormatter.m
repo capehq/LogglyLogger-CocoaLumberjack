@@ -101,11 +101,11 @@
     }
     @catch (NSException *exception) {
         NSMutableDictionary * info = [NSMutableDictionary dictionary];
-        [info setValue:exception.name forKey:@"ExceptionName"];
-        [info setValue:exception.reason forKey:@"ExceptionReason"];
-        [info setValue:exception.callStackReturnAddresses forKey:@"ExceptionCallStackReturnAddresses"];
-        [info setValue:exception.callStackSymbols forKey:@"ExceptionCallStackSymbols"];
-        [info setValue:exception.userInfo forKey:@"ExceptionUserInfo"];
+        info[@"ExceptionName"] = exception.name;
+        info[@"ExceptionReason"] = exception.reason;
+        info[@"ExceptionCallStackReturnAddresses"] = exception.callStackReturnAddresses;
+        info[@"ExceptionCallStackSymbols"] = exception.callStackSymbols;
+        info[@"ExceptionUserInfo"] = exception.userInfo;
 
         outputJsonError = [[NSError alloc] initWithDomain:@"LogglyLogger" code:0 userInfo:info];
     }
