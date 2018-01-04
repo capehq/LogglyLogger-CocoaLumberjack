@@ -4,7 +4,7 @@
 
 #import "LogglyFormatter.h"
 #import "LogglyFields.h"
-#define kLogglyFormatStringWhenLogMsgIsNotJson @"{\"loglevel\":\"%@\",\"timestamp\":\"%@\",\"file\":\"%@\",\"fileandlinenumber\":\"%@:%lu\",\"jsonerror\":\"JSON Output Error when trying to create Loggly JSON\",\"rawlogmessage\":\"%@\"}"
+#define kLogglyFormatStringWhenLogMsgIsNotJson @"{\"loglevel\":\"%@\",\"timestamp\":\"%@\",\"file\":\"%@\",\"fileandlinenumber\":\"%@:%lu\",\"jsonerror\":\"JSON Output Error when trying to create Loggly JSON: %@\",\"rawlogmessage\":\"%@\"}"
 
 #pragma mark NSMutableDictionary category.
 // Defined here so it doesn't spill over to the client projects.
@@ -95,15 +95,28 @@
     }
 
     NSError *outputJsonError;
-    NSData *outputJson = [NSJSONSerialization dataWithJSONObject:logfields options:0 error:&outputJsonError];
+    NSData *outputJson;
+    @try {
+        outputJson = [NSJSONSerialization dataWithJSONObject:logfields options:0 error:&outputJsonError];
+    }
+    @catch (NSException *exception) {
+        NSMutableDictionary * info = [NSMutableDictionary dictionary];
+        info[@"ExceptionName"] = exception.name;
+        info[@"ExceptionReason"] = exception.reason;
+        info[@"ExceptionCallStackReturnAddresses"] = exception.callStackReturnAddresses;
+        info[@"ExceptionCallStackSymbols"] = exception.callStackSymbols;
+        info[@"ExceptionUserInfo"] = exception.userInfo;
+
+        outputJsonError = [[NSError alloc] initWithDomain:@"LogglyLogger" code:0 userInfo:info];
+    }
     if (outputJsonError) {
-        return [NSString stringWithFormat:kLogglyFormatStringWhenLogMsgIsNotJson, logLevel, iso8601DateString, filestring, filestring, (unsigned long)logMessage->_line, logMsg];
+        return [NSString stringWithFormat:kLogglyFormatStringWhenLogMsgIsNotJson, logLevel, iso8601DateString, filestring, filestring, (unsigned long)logMessage->_line, [outputJsonError localizedDescription], logMsg];
     }
     NSString *jsonString = [[NSString alloc] initWithData:outputJson encoding:NSUTF8StringEncoding];
     if (jsonString) {
         return jsonString;
     } else {
-        return [NSString stringWithFormat:kLogglyFormatStringWhenLogMsgIsNotJson, logLevel, iso8601DateString, filestring, filestring, (unsigned long)logMessage->_line, logMsg];
+        return [NSString stringWithFormat:kLogglyFormatStringWhenLogMsgIsNotJson, logLevel, iso8601DateString, filestring, filestring, (unsigned long)logMessage->_line, @"", logMsg];
     }
 }
 
